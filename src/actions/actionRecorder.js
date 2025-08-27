@@ -1,6 +1,6 @@
 let recordedActions = [];
 
-function recordFillAction(target) {
+async function recordFillAction(target) {
   const action = {
     type: "fill",
     selector: generateUniqueSelector(target),
@@ -8,10 +8,15 @@ function recordFillAction(target) {
     timestamp: Date.now(),
   };
   recordedActions.push(action);
-  console.log("Filled:", action);
+  try {
+    await saveRecord(action);
+    console.log("Filled:", action);
+  } catch (error) {
+    console.error("Error saving fill action:", error);
+  }
 }
 
-function recordClickAction(target) {
+async function recordClickAction(target) {
   const action = {
     type: "click",
     selector: generateUniqueSelector(target),
@@ -19,5 +24,10 @@ function recordClickAction(target) {
     timestamp: Date.now(),
   };
   recordedActions.push(action);
-  console.log("Clicked:", target.id);
+  try {
+    await saveRecord(action);
+    console.log("Clicked:", target.id);
+  } catch (error) {
+    console.error("Error saving click action:", error);
+  }
 }

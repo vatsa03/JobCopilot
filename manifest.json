@@ -11,6 +11,7 @@
       "matches": ["https://*.amazon.jobs/*", "https://*.uber.com/*"],
       "js": [
         "src/utils/utilities.js",
+        "src/utils/databaseHandler.js",
         "src/actions/actionRecorder.js",
         "src/actions/actionPlayer.js",
         "src/listeners/eventListeners.js",
