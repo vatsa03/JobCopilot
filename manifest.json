@@ -1,0 +1,24 @@
+{
+  "name": "JoCo",
+  "description": "Assistant to apply for jobs",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "apply.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.amazon.jobs/*", "https://*.uber.com/*"],
+      "js": [
+        "src/utils/utilities.js",
+        "src/actions/actionRecorder.js",
+        "src/actions/actionPlayer.js",
+        "src/listeners/eventListeners.js",
+        "src/listeners/createApplyButton.js",
+        "src/apply.js"
+      ],
+      "css": ["styles.css"],
+      "all_frames": true
+    }
+  ]
+}
