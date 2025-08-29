@@ -4,6 +4,8 @@ async function recordFillAction(target) {
   const action = {
     type: "fill",
     selector: generateUniqueSelector(target),
+    page_number: 1,
+    website: "uber",
     value: target.value,
     timestamp: Date.now(),
   };

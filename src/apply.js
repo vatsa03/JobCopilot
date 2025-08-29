@@ -1,6 +1,12 @@
 function init() {
   createApplyButton();
-  setupEventListeners();
 }
 
 init();
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "startRecording") {
+    console.log("Recording started...");
+    setupEventListeners();
+  }
+});

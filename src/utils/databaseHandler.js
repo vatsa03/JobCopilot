@@ -1,11 +1,11 @@
 function openDB() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open("JoCo_DB", 1);
+    const request = indexedDB.open("JoCo_DB", 2);
 
     request.onupgradeneeded = function (event) {
       const db = event.target.result;
-      if (!db.objectStoreNames.contains("actions")) {
-        db.createObjectStore("actions", { keyPath: "id", autoIncrement: true });
+      if (!db.objectStoreNames.contains("pages")) {
+        db.createObjectStore("pages", { keyPath: "id", autoIncrement: true });
       }
     };
 
@@ -22,8 +22,8 @@ function openDB() {
 async function saveRecord(data) {
   try {
     const db = await openDB();
-    const tx = db.transaction("actions", "readwrite");
-    const store = tx.objectStore("actions");
+    const tx = db.transaction("pages", "readwrite");
+    const store = tx.objectStore("pages");
     await store.add(data);
     await tx.complete;
     console.log("Record saved successfully:", data);
