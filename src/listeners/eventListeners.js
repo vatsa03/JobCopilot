@@ -13,13 +13,7 @@ function setupEventListeners() {
   document.addEventListener("click", (event) => {
     const target = event.target;
     if (target.id === "job-apply-btn") return;
-    if (
-      target.tagName === "BUTTON" ||
-      target.type === "submit" ||
-      target.type === "checkbox" ||
-      target.type === "radio"
-    ) {
-      recordClickAction(target);
-    }
+
+    recordClickAction(target);
   });
 }

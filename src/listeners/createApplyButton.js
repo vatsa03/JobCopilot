@@ -5,7 +5,7 @@ function createApplyButton() {
 
   button.onclick = () => {
     console.log("Filling application form...");
-    //replayActions(recordedActions);
+    replayActions();
     console.log("Application form filled.");
   };
 
