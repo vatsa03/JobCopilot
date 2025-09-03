@@ -6,9 +6,13 @@
   "action": {
     "default_popup": "apply.html"
   },
+  "permissions": ["storage"],
   "content_scripts": [
     {
-      "matches": ["https://*.amazon.jobs/*", "https://*.uber.com/*"],
+      "matches": [
+        "https://*.amazon.jobs/*",
+        "https://*.uber.com/careers/apply/form*"
+      ],
       "js": [
         "src/utils/utilities.js",
         "src/utils/databaseHandler.js",

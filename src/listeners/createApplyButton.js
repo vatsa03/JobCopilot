@@ -4,9 +4,7 @@ function createApplyButton() {
   button.id = "job-apply-btn";
 
   button.onclick = () => {
-    console.log("Filling application form...");
     replayActions();
-    console.log("Application form filled.");
   };
 
   document.body.appendChild(button);

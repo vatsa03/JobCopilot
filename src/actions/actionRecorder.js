@@ -1,4 +1,17 @@
-let recordedActions = [];
+function sync_to_storage(action) {
+  chrome.storage.local.get(["actions"], function (result) {
+    let actions = result.actions || {};
+    if (!actions["uber"]) {
+      actions["uber"] = {};
+    }
+    if (!actions["uber"]["page_1"]) {
+      actions["uber"]["page_1"] = [];
+    }
+
+    actions["uber"]["page_1"].push(action);
+    chrome.storage.local.set({ actions: actions }, function () {});
+  });
+}
 
 async function recordFillAction(target) {
   const action = {
@@ -11,8 +24,7 @@ async function recordFillAction(target) {
   };
   recordedActions.push(action);
   try {
-    await saveRecord(action);
-    console.log("Filled:", action);
+    sync_to_storage(action);
   } catch (error) {
     console.error("Error saving fill action:", error);
   }
@@ -27,8 +39,7 @@ async function recordClickAction(target) {
   };
   recordedActions.push(action);
   try {
-    await saveRecord(action);
-    console.log("Clicked:", target.id);
+    sync_to_storage(action);
   } catch (error) {
     console.error("Error saving click action:", error);
   }

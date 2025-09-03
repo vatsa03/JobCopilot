@@ -21,12 +21,13 @@ async function sleep(ms) {
 }
 
 async function replayActions() {
-  const data = await readFromIndexedDB("JoCo_DB", "pages");
-  console.log("IndexedDB data:", data);
+  result = await chrome.storage.local.get(["actions"]);
+  console.log("Storage result:", result);
+  const data = result.actions?.uber?.page_1 || [];
+  console.log("Stored actions data:", data);
 
   for (const action of data) {
-    await sleep(200);
-    console.log("Replaying action:", action);
+    await sleep(500);
     const el = document.querySelector(action.selector);
     if (!el) continue;
 
